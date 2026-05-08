@@ -3,10 +3,10 @@ from django.urls import path, include
 from django.http import HttpResponse
 
 def home(request):
-    return HttpResponse("Django Backend Running Successfully!")
+    return HttpResponse("Frontend Working 🚀")
 
 urlpatterns = [
     path('', home),
     path('admin/', admin.site.urls),
-    path('api/', include('yourapp.urls')),
+    path('api/', include('api.urls')),
 ]
