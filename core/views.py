@@ -9,6 +9,27 @@ from .serializers import EmailRecordSerializer
 from .email_service import send_email
 
 
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+
+@csrf_exempt
+def send_email(request):
+
+    if request.method == "POST":
+
+        data = json.loads(request.body)
+
+        email = data.get("email")
+
+        return JsonResponse({
+            "message": f"Email sent to {email}"
+        })
+
+    return JsonResponse({
+        "error": "Invalid request"
+    })
+
 @api_view(["GET"])
 def home(request):
 
