@@ -13,6 +13,11 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 
+from django.shortcuts import render
+
+def home(request):
+    return render(request, "index.html")
+
 @csrf_exempt
 def send_email(request):
 
