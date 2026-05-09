@@ -1,22 +1,170 @@
-<button
-onclick="sendEmails()"
-class="bg-cyan-500 px-5 py-3 rounded-xl">
+{% load static %}
 
-Send Emails
+<!DOCTYPE html>
+<html lang="en">
 
-</button>
+<head>
 
-<script>
+    <meta charset="UTF-8">
 
-async function sendEmails() {
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    const response = await fetch('/send-sheet/');
+    <title>Email Automation</title>
 
-    const data = await response.json();
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    alert(
-        `Total Emails Sent: ${data.total_emails_sent}`
-    );
-}
+    <link
+        rel="stylesheet"
+        href="{% static 'style.css' %}">
 
-</script>
+</head>
+
+<body class="bg-[#020617] overflow-hidden min-h-screen text-white flex justify-center items-center relative">
+
+    <!-- Animated Background -->
+    <div class="absolute inset-0 -z-10">
+
+        <div class="absolute top-[-120px] left-[-120px] w-[350px] h-[350px] bg-cyan-500/20 rounded-full blur-3xl animate-pulse"></div>
+
+        <div class="absolute bottom-[-120px] right-[-120px] w-[350px] h-[350px] bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+
+        <div class="stars"></div>
+
+    </div>
+
+    <!-- Main Card -->
+    <div class="
+        backdrop-blur-xl
+        bg-white/10
+        border border-white/10
+        shadow-2xl
+        rounded-3xl
+        p-10
+        w-[420px]
+        text-center
+        transition-all
+        duration-500
+        hover:scale-[1.02]
+    ">
+
+        <!-- Logo -->
+        <div class="flex justify-center mb-6">
+
+            <div class="
+                w-24
+                h-24
+                rounded-full
+                bg-gradient-to-r
+                from-cyan-400
+                to-blue-600
+                flex
+                justify-center
+                items-center
+                text-4xl
+                shadow-lg
+                shadow-cyan-500/40
+                animate-rotate
+                
+            ">
+                ✉️
+            </div>
+
+        </div>
+
+        <!-- Heading -->
+        <h1 class="text-5xl font-extrabold mb-4 tracking-wide">
+
+            Email Automation
+
+        </h1>
+
+        <p class="text-slate-300 leading-relaxed mb-8 text-lg">
+
+            Trigger internship report emails directly
+            from Google Sheets using Django + SMTP.
+
+        </p>
+
+        <!-- Button -->
+        <button
+            id="sendBtn"
+            onclick="sendEmails()"
+            class="
+                bg-gradient-to-r
+                from-cyan-500
+                to-blue-600
+                px-8
+                py-4
+                rounded-2xl
+                text-lg
+                font-bold
+                shadow-lg
+                shadow-cyan-500/30
+                transition-all
+                duration-300
+                hover:scale-105
+                active:scale-95
+            ">
+
+            Send Emails 🚀
+
+        </button>
+
+        <!-- Loader -->
+        <div
+            id="loader"
+            class="hidden mt-8 flex justify-center">
+
+            <div class="
+                w-10
+                h-10
+                border-4
+                border-cyan-400
+                border-t-transparent
+                rounded-full
+                animate-spin
+            "></div>
+
+        </div>
+
+        <!-- Result -->
+        <div
+            id="result"
+            class="mt-8 text-lg font-semibold">
+        </div>
+        <a
+    href="https://docs.google.com/spreadsheets/d/14Y8r1qTXId9m2n36w_Zc2rTCUVJoqGdfBdLAkASQjSo/edit"
+    target="_blank"
+    class="
+        mt-5
+        inline-flex
+        items-center
+        gap-3
+        bg-white/10
+        border border-white/10
+        px-6
+        py-3
+        rounded-2xl
+        text-slate-200
+        font-semibold
+        transition-all
+        duration-300
+        hover:bg-green-500/20
+        hover:border-green-400/30
+        hover:scale-105
+    ">
+
+    <span class="text-2xl">
+        📄
+    </span>
+
+    Open Google Sheet
+
+</a>
+    </div>
+
+<script src="{% static 'script.js' %}"></script>
+
+</body>
+</html>
