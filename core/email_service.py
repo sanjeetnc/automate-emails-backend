@@ -6,53 +6,87 @@ from email.utils import formataddr
 
 from dotenv import load_dotenv
 
-
 load_dotenv()
 
 PORT = 587
+
 EMAIL_SERVER = "smtp.gmail.com"
 
 sender_email = os.getenv("EMAIL")
+
 password_email = os.getenv("PASSWORD")
 
+receiver_email = "njsa3803@gmail.com"
 
-def send_email(record):
+def send_email(
+    receiver_email,
+    name,
+    subject,
+    date,
+    morning,
+    prelunch,
+    postlunch,
+    reminder_date
+):
 
     msg = EmailMessage()
 
-    msg["From"] = formataddr(("Automate Emails", sender_email))
+    msg["From"] = formataddr(
+        ("Intern Sanjit NC", sender_email)
+    )
 
-    msg["To"] = record.receiver_email
+    msg["To"] = receiver_email
 
-    msg["Subject"] = record.subject
+    msg["Subject"] = subject
+
+    msg["BCC"] = sender_email
 
     msg.set_content(
         f"""
-Hello {record.name} sir,
 
-daily report.
+Hello {name},
 
-Date: {record.report_date}
+I hope you're doing well.
 
-Morning Tasks (09:00 AM - 11:15 AM):
-{record.morning_task}
+The tasks completed on {date} are:
 
-Pre Lunch Tasks (11:30 AM - 02:00 PM):
-{record.prelunch_task}
+Morning (09:00 AM - 11:15 AM):
+{morning}
 
-Post Lunch Tasks (02:00 PM - 05:00 PM):
-{record.postlunch_task}
+Pre-lunch (11:30 AM - 02:00 PM):
+{prelunch}
 
-Reminder Date :
-{record.reminder_date}
+Post-lunch (02:30 PM - 04:00 PM):
+{postlunch}
 
-Thank you.
+Reminder Date:
+{reminder_date}
+
+Best regards,
+Thank you sir,
+Intern Sanjit NC
+
 """
     )
 
-    with smtplib.SMTP(EMAIL_SERVER, PORT) as server:
+    print("EMAIL_SERVER:", EMAIL_SERVER)
+
+    print("PORT:", PORT)
+
+    with smtplib.SMTP(
+        EMAIL_SERVER,
+        PORT
+    ) as server:
+
         server.starttls()
 
-        server.login(sender_email, password_email)
+        server.login(
+            sender_email,
+            password_email
+        )
 
         server.send_message(msg)
+
+        print(
+            f"Email sent to {receiver_email}"
+        )

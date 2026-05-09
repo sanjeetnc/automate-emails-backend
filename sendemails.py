@@ -59,7 +59,7 @@ if __name__ == "__main__":
     send_email(
         subject="Daily Report",
         name="Sanjit NC",
-        receiver_email="vikashc030207@gmail.com",
+        receiver_email="njsa3803@gmail.com",
         date="2023-10-01",
         time="10:00 AM",
         tasks="Completed the email automation script."

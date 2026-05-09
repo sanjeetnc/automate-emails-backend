@@ -1,32 +1,15 @@
 from django.contrib import admin
 from django.urls import path
-from django.http import HttpResponse
-from core.views import send_email
 
-def home(request):
-    return HttpResponse("""
-    <h1>Frontend Working 🚀</h1>
+from core.views import (
+    home,
+    send_sheet_emails
+)
 
-    <button onclick="sendMail()">
-        Send Email
-    </button>
 
-    <script>
-
-    async function sendMail() {
-
-        const response = await fetch('/send/');
-
-        const data = await response.json();
-
-        alert(data.message);
-    }
-
-    </script>
-    """)
 
 urlpatterns = [
     path('', home),
-    path('send/', send_email),
+    path('send/', send_sheet_emails),
     path('admin/', admin.site.urls),
 ]
